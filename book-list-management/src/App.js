@@ -86,7 +86,7 @@ function App() {
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{ marginBottom: "10px", display: "block" }}
       />
-
+  
       <table border="1" cellPadding="8" style={{ width: "100%", marginTop: "10px" }}>
         <thead>
           <tr>

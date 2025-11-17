@@ -82,7 +82,6 @@ export default function App() {
     <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
       <h2>Student List Management App</h2>
 
-      {/* Add Student Form */}
       <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
         <input
           placeholder="Student name"

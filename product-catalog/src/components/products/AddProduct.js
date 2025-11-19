@@ -20,7 +20,7 @@ function AddProduct() {
 
     axios.post("https://worksheet-catalogue.mashupstack.com/products", form)
       .then(() => {
-        navigate("/products");
+        navigate("/");
       });
   }
 

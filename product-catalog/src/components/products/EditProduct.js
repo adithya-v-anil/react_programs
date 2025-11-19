@@ -30,7 +30,7 @@ function EditProduct() {
     axios
       .put(`https://worksheet-catalogue.mashupstack.com/products/${id}`, form)
       .then(() => {
-        navigate("/products");
+        navigate("/");
       });
   }
 

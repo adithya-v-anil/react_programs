@@ -1,0 +1,61 @@
+import axios from "axios";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/authSlice";
+import { useNavigate } from "react-router-dom";
+
+function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    function attemptLogin() {
+        axios.post("https://worksheet-product.mashupstack.com/login", {
+            email: email,
+            password: password
+        })
+        .then((response) => {
+            dispatch(setUser({
+                email: email,
+                token: response.data.token
+            }));
+            alert("Logged in");
+            navigate("/products");
+        })
+        .catch((error) => {
+            setMessage(error.response?.data?.message || "Login failed");
+        });
+    }
+
+    return (
+        <div className="container mt-4">
+            <h2>Login</h2>
+
+            {message && <div className="alert alert-danger">{message}</div>}
+
+            <div className="form-group">
+                <label>Email</label>
+                <input className="form-control"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)} />
+            </div>
+
+            <div className="form-group">
+                <label>Password</label>
+                <input className="form-control" type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} />
+            </div>
+
+            <button className="btn btn-primary mt-3"
+                onClick={attemptLogin}>
+                Login
+            </button>
+        </div>
+    );
+}
+
+export default Login;
